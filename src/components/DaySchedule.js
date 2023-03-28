@@ -1,13 +1,19 @@
-import React from 'react'
-import dayjs from 'dayjs'
+import React, { useState } from 'react'
 import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { Card, Grid, Typography } from '@mui/material'
+import { Card, Grid, Typography, } from '@mui/material'
 
 export const DaySchedule = (props) => {
-    const [beginHour, beginMinute] = props.daySchedule.beginTime.split(':')
-    const [endHour, endMinute] = props.daySchedule.endTime.split(':')
+    const [schedule, innerSetSchedule] = useState(props.daySchedule)
 
+    const setSchedule = (schedule) => {
+        innerSetSchedule(schedule)
+        if (props.onChange != null) {
+            props.onChange(schedule)
+        }
+    }
+
+    // console.debug(`Schedule named ${props.dayName} checked is ${props.dayEnabled}`)
     return (
         <Card
             sx={{
@@ -22,8 +28,9 @@ export const DaySchedule = (props) => {
                     </Grid>
                     <Grid item xs={3}>
                         <TimePicker
-                            value={dayjs().hour(beginHour).minute(beginMinute)}
+                            value={schedule.beginTime}
                             ampm={false}
+                            onChange={(beginTime) => setSchedule({ ...schedule, beginTime })}
                         />
                     </Grid>
                     <Grid item xs={3}>
@@ -31,8 +38,9 @@ export const DaySchedule = (props) => {
                     </Grid>
                     <Grid item xs={3}>
                         <TimePicker
-                            value={dayjs().hour(endHour).minute(endMinute)}
+                            value={schedule.endTime}
                             ampm={false}
+                            onChange={(endTime) => setSchedule({ ...schedule, endTime })}
                         />
                     </Grid>
                 </Grid>
