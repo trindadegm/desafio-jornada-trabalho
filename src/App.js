@@ -16,7 +16,7 @@ function App() {
           margin: '1.5em 0 1.5em 0'
         }}
       >
-        <Grid item xs={11} lg={8}>
+        <Grid item xs={11} lg={8} xl={6}>
           <WorkSchedule/>
         </Grid>
       </Grid>
