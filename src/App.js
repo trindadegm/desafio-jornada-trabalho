@@ -5,8 +5,14 @@ import { WorkSchedule } from './views/WorkSchedule.js'
 function App() {
   return (
     <div className="App">
-      <Grid container justifyContent="center">
-        <Grid item xs={12} lg={8}>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{
+          margin: '1.5em 0 0 0'
+        }}
+      >
+        <Grid item xs={11} lg={8}>
           <WorkSchedule/>
         </Grid>
       </Grid>

@@ -37,7 +37,7 @@ export const WorkSchedule = (props) => {
           }}
         />
       </Grid>
-      <Grid item xs={5}>
+      <Grid item sm={5} xs={12}>
         <FormGroup>
           {/* <Typography>Configuração da jornada de trabalho</Typography> */}
           <FormControlLabel control={<Checkbox />} label="Horário ativo" />
