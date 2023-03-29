@@ -1,5 +1,12 @@
 import dayjs from 'dayjs'
 
+export class ApiError {
+  constructor(status, body) {
+    this.status = status
+    this.body = body
+  }
+}
+
 export class ScheduleApi {
   constructor(server) {
     this.server = server
@@ -8,7 +15,7 @@ export class ScheduleApi {
   async get() {
     const response = await fetch(this.server + '/schedule')
     if (response.status !== 200) {
-      throw Error('Request failed!')
+      throw new ApiError(response.status, response.body)
     } else {
       const jsonValue = await response.json()
 
@@ -65,5 +72,9 @@ export class ScheduleApi {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     })
+
+    if (response.status != 200) {
+      throw new ApiError(response.status, response.body)
+    }
   }
 }
