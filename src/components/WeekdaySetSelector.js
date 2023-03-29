@@ -32,11 +32,11 @@ export const WeekdayButton = (props) => {
 export const WeekdaySetSelector = (props) => {
   const letters = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
   return (
-    <Grid container columns={24} direction='row' justifyContent='center'>
+    <Grid container columns={24} justifyContent='center'>
       {
         letters.map((letter, index) => {
           return (
-            <Grid item xs={3}>
+            <Grid item xs={3} key={index}>
               <WeekdayButton
                 toggled={props.value[index]}
                 letter={letter}

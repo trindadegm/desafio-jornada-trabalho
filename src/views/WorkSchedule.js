@@ -15,6 +15,10 @@ const mapDayName = [
   'Sábado',
 ]
 
+const saveSchedule = (schedule) => {
+  console.debug(`Saving schedule: ${JSON.stringify(schedule)}`)
+}
+
 export const WorkSchedule = (props) => {
   const [workSchedule, setWorkSchedule] = useState({
     workDays: Array(7).fill(false),
@@ -92,8 +96,13 @@ export const WorkSchedule = (props) => {
           </TransitionGroup>
         </List>
       </Grid>
-      <Grid item direction="column" align="right" xs={12}>
-        <Button variant="contained">Salvar</Button>
+      <Grid item align="right" xs={12}>
+        <Button
+          variant="contained"
+          onClick={() => saveSchedule(workSchedule)}
+        >
+          Salvar
+        </Button>
       </Grid>
     </Grid>
   )
