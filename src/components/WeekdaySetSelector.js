@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 
 export const WeekdayButton = (props) => {
   return (
@@ -30,15 +30,22 @@ export const WeekdayButton = (props) => {
 }
 
 export const WeekdaySetSelector = (props) => {
+  const letters = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
   return (
-    <div>
-      <WeekdayButton toggled={props.value[0]} letter='D' onClick={(value) => props.onSet(0, value)} />
-      <WeekdayButton toggled={props.value[1]} letter='S' onClick={(value) => props.onSet(1, value)} />
-      <WeekdayButton toggled={props.value[2]} letter='T' onClick={(value) => props.onSet(2, value)} />
-      <WeekdayButton toggled={props.value[3]} letter='Q' onClick={(value) => props.onSet(3, value)} />
-      <WeekdayButton toggled={props.value[4]} letter='Q' onClick={(value) => props.onSet(4, value)} />
-      <WeekdayButton toggled={props.value[5]} letter='S' onClick={(value) => props.onSet(5, value)} />
-      <WeekdayButton toggled={props.value[6]} letter='S' onClick={(value) => props.onSet(6, value)} />
-    </div>
+    <Grid container columns={24} direction='row' justifyContent='center'>
+      {
+        letters.map((letter, index) => {
+          return (
+            <Grid item xs={3}>
+              <WeekdayButton
+                toggled={props.value[index]}
+                letter={letter}
+                onClick={(value) => props.onSet(index, value)}
+              />
+            </Grid>
+          )
+        })
+      }
+    </Grid>
   )
 }
