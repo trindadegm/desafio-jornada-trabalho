@@ -73,7 +73,7 @@ export class ScheduleApi {
       },
     })
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw new ApiError(response.status, response.body)
     }
   }
