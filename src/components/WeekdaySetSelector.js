@@ -12,7 +12,7 @@ export const WeekdayButton = (props) => {
         width: '3.0em',
         height: '3.0em',
         color: '#ffffff',
-        backgroundColor: props.toggled ? '#8080ff' : '#808080',
+        backgroundColor: props.toggled ? '#2196f3' : '#9e9e9e',
         margin: '0.1em 0.25em 0.1em 0.25em',
         alignItems: 'center',
         justifyContent: 'center',
