@@ -9,7 +9,7 @@ function App() {
         container
         justifyContent="center"
         sx={{
-          margin: '1.5em 0 0 0'
+          margin: '1.5em 0 1.5em 0'
         }}
       >
         <Grid item xs={11} lg={8}>

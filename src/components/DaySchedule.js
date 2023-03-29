@@ -28,6 +28,7 @@ export const DaySchedule = (props) => {
           </Grid>
           <Grid item xs={3}>
             <TimePicker
+              label="Início"
               value={schedule.beginTime}
               ampm={false}
               onChange={(beginTime) => setSchedule({ ...schedule, beginTime })}
@@ -38,6 +39,7 @@ export const DaySchedule = (props) => {
           </Grid>
           <Grid item xs={3}>
             <TimePicker
+              label="Fim"
               value={schedule.endTime}
               ampm={false}
               onChange={(endTime) => setSchedule({ ...schedule, endTime })}

@@ -3,7 +3,7 @@ import { TransitionGroup } from 'react-transition-group'
 import { WeekdaySetSelector } from '../components/WeekdaySetSelector'
 import { DaySchedule } from '../components/DaySchedule'
 import dayjs from 'dayjs'
-import { Checkbox, Collapse, FormControlLabel, FormGroup, Grid, List, MenuItem, Select, Typography } from '@mui/material'
+import { Button, Checkbox, Collapse, FormControlLabel, FormGroup, Grid, List, MenuItem, Select } from '@mui/material'
 
 const mapDayName = [
   'Domingo',
@@ -22,6 +22,8 @@ export const WorkSchedule = (props) => {
       beginTime: dayjs().hour(8).minute(0),
       endTime: dayjs().hour(16).minute(0),
     }),
+    active: false,
+    configType: 'sendInNextJourney',
   })
 
   return (
@@ -40,9 +42,18 @@ export const WorkSchedule = (props) => {
       <Grid item sm={5} xs={12}>
         <FormGroup>
           {/* <Typography>Configuração da jornada de trabalho</Typography> */}
-          <FormControlLabel control={<Checkbox />} label="Horário ativo" />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={workSchedule.active}
+                onChange={(event) => setWorkSchedule({...workSchedule, active: event.target.checked })}
+              />
+            }
+            label="Horário ativo"
+          />
           <Select
-            value={'sendInNextJourney'}
+            value={workSchedule.configType}
+            onChange={(event) => setWorkSchedule({...workSchedule, configType: event.target.value })}
           >
             <MenuItem value="abort">Abortar</MenuItem>
             <MenuItem value="sendInNextJourney">Enviar no próximo expediente</MenuItem>
@@ -80,6 +91,9 @@ export const WorkSchedule = (props) => {
             }
           </TransitionGroup>
         </List>
+      </Grid>
+      <Grid item direction="column" align="right" xs={12}>
+        <Button variant="contained">Salvar</Button>
       </Grid>
     </Grid>
   )
