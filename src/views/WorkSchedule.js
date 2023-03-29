@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { WeekdaySetSelector } from '../components/WeekdaySetSelector'
 import { DaySchedule } from '../components/DaySchedule'
 import dayjs from 'dayjs'
+import { ScheduleApi } from '../api/ScheduleApi'
 import { Alert, Button, Checkbox, Collapse, FormControlLabel, FormGroup, Grid, List, MenuItem, Select, Snackbar } from '@mui/material'
 
 const mapDayName = [
@@ -40,8 +41,27 @@ export const WorkSchedule = (props) => {
     setSnackbar({ ...snackbar, open: false })
   }
 
+  useEffect(() => {
+    const api = new ScheduleApi('http://localhost:8000')
+
+    api.get().then((retrievedSchedule) => {
+      setWorkSchedule(retrievedSchedule)
+    }).catch((err) => {
+      setSnackbar({
+        open: true,
+        severity: 'error',
+        message: 'Falha ao carregar dados do servidor'
+      })
+    })
+  }, []);
+
   const saveSchedule = (schedule) => {
     console.debug(`Saving schedule: ${JSON.stringify(schedule)}`)
+
+    // try {
+    // } catch (e) {
+    // } finally {
+    // }
 
     setSnackbar({
       open: true,

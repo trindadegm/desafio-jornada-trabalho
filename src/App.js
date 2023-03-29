@@ -1,8 +1,12 @@
 import { Grid } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { WorkSchedule } from './views/WorkSchedule.js'
 
 function App() {
+  useEffect(() => {
+    console.log('App mounted?')
+  }, [])
+
   return (
     <div className="App">
       <Grid
