@@ -41,6 +41,29 @@ export class ScheduleApi {
     }
   }
 
-  put(schedule) {
+  async put(schedule) {
+    const schedules = schedule.daySchedules
+      .map((schedule, index) => {
+        return {
+          day: index,
+          beginTime: schedule.beginTime.format('HH:mm'),
+          endTime: schedule.endTime.format('HH:mm'),
+        }
+      })
+      .filter((v, index) => schedule.workDays[index])
+
+    const parsedSchedule = {
+      active: schedule.active,
+      configType: schedule.configType,
+      schedules
+    }
+
+    const response = await fetch(this.server + '/schedule', {
+      method: 'PUT',
+      body: JSON.stringify(parsedSchedule),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    })
   }
 }

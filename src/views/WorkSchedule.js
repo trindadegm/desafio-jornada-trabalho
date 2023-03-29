@@ -58,15 +58,20 @@ export const WorkSchedule = (props) => {
   const saveSchedule = (schedule) => {
     console.debug(`Saving schedule: ${JSON.stringify(schedule)}`)
 
-    // try {
-    // } catch (e) {
-    // } finally {
-    // }
+    const api = new ScheduleApi('http://localhost:8000')
 
-    setSnackbar({
-      open: true,
-      severity: 'error',
-      message: 'Não salvou!'
+    api.put(schedule).then(() => {
+      setSnackbar({
+        open: true,
+        severity: 'success',
+        message: 'Salvo com sucesso!'
+      })
+    }).catch((e) => {
+      setSnackbar({
+        open: true,
+        severity: 'error',
+        message: 'Falha ao salvar jornada!'
+      })
     })
   }
 
